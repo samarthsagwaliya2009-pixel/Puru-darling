@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+body {
+    margin:0;
+    padding:0;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow:hidden;
+    color:white;
+    text-align:center;
+}
+
+.card {
+    background: rgba(0,0,0,0.3);
+    padding:40px;
+    border-radius:20px;
+    width:85%;
+    max-width:400px;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 2s ease-in-out;
+}
+
+h1 {
+    margin-bottom:15px;
+}
+
+#message {
+    font-size:18px;
+    min-height:80px;
+}
+
+button {
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:white;
+    color:#ff4f81;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover {
+    background:#ffe3ec;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+.heart {
+    position:absolute;
+    color:white;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(100vh); opacity:0;}
+    50% {opacity:1;}
+    100% {transform: translateY(-10vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Hey You ❤️</h1>
+    <div id="message"></div>
+    <button onclick="reveal()">Click Me</button>
+</div>
+
+<script>
+const text = "You said Valentine's doesn't matter. Maybe it doesn't. But you matter to me. And I don't need a date on the calendar to choose you.";
+
+let i = 0;
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 40);
+    }
+}
+
+typeWriter();
+
+function reveal(){
+    alert("I may mess up sometimes, but I'll never stop trying for you. 💌");
+}
+
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = Math.random()*20 + 15 + "px";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},6000);
+}
+
+setInterval(createHeart,500);
+</script>
+
+</body>
+</html>
